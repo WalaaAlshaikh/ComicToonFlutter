@@ -86,7 +86,7 @@ class LoginScreen extends StatelessWidget {
                           return AuthTextFromField(
                             maxLines: 1,
                             controller: passwordController,
-                            obscureText: controller.isVisible ? false : true,
+                            obscureText: controller.isVisibilty ? false : true,
                             validator: (value) {
                               if (value.toString().length < 6) {
                                 return 'Password should be longer than 6 characters';
@@ -100,9 +100,9 @@ class LoginScreen extends StatelessWidget {
                             ),
                             suffixIcon: IconButton(
                               onPressed: () {
-                                controller.visible();
+                                controller.Visibilty();
                               },
-                              icon: controller.isVisible
+                              icon: controller.isVisibilty
                                   ? const Icon(
                                       Icons.visibility_off,
                                       color: Colors.black54,
@@ -140,7 +140,7 @@ class LoginScreen extends StatelessWidget {
                                 String email = emailController.text.trim();
                                 String password = passwordController.text;
 
-                                controller.loginFirebase(
+                                controller.loginUsingFierbase(
                                     email: email, password: password);
                               }
                             },

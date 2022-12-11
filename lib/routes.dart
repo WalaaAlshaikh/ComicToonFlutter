@@ -1,5 +1,10 @@
+import 'package:comic_toon_flutter/views/main_screen.dart';
+import 'package:comic_toon_flutter/views/screens/auth/forgot_password.dart';
 import 'package:comic_toon_flutter/views/screens/auth/login.dart';
 import 'package:comic_toon_flutter/views/screens/auth/register.dart';
+import 'package:comic_toon_flutter/views/screens/setting/edit_profile_screen.dart';
+import 'package:comic_toon_flutter/views/screens/setting/profile.dart';
+import 'package:comic_toon_flutter/views/screens/setting/settings_screen.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 import 'logic/bindings/auth_binding.dart';
@@ -17,26 +22,26 @@ class AppRoutes {
         name: Routes.signUpScreen,
         page: () => RegisterScreen(),
         binding: AuthBinding()),
-    // GetPage(
-    //     name: Routes.forgotPasswordScreen,
-    //     page: () => ForgotPasswordScreen(),
-    //     binding: AuthBinding()),
-    // GetPage(
-    //     name: Routes.profileScreen,
-    //     page: () => ProfileScreen(),
-    //     binding: AuthBinding()),
-    // GetPage(
-    //     name: Routes.editProfileScreen,
-    //     page: () => EditProfileScreen(),
-    //     binding: AuthBinding()),
-    // GetPage(
-    //     name: Routes.settingsScreen,
-    //     page: () => SettingScreen(),
-    //     binding: AuthBinding()),
-    // GetPage(
-    //     name: Routes.mainScreen,
-    //     page: () => MainScreen(),
-    //     bindings:[ AuthBinding(), BookBinding(),MainBinding()]),
+    GetPage(
+        name: Routes.forgotPasswordScreen,
+        page: () => ForgetPass(),
+        binding: AuthBinding()),
+    GetPage(
+        name: Routes.profileScreen,
+        page: () => ProfileScreen(),
+        binding: AuthBinding()),
+    GetPage(
+        name: Routes.editProfileScreen,
+        page: () => EditProfileScreen(),
+        binding: AuthBinding()),
+    GetPage(
+        name: Routes.settingsScreen,
+        page: () => SettingScreen(),
+        binding: AuthBinding()),
+    GetPage(
+        name: Routes.mainScreen,
+        page: () => MainScreen(),
+        bindings:[ AuthBinding(), ]),
     // GetPage(
     //   name: Routes.stockScreen,
     //   page: () => StockScreen(),

@@ -105,7 +105,7 @@ class RegisterScreen extends StatelessWidget {
                               return AuthTextFromField(
                                 maxLines: 1,
                                 controller: passwordController,
-                                obscureText: controller.isVisible ?false : true,
+                                obscureText: controller.isVisibilty ?false : true,
                                 validator: (value){
                                   if(value.toString().length <6){
                                     return 'Password should be longer than 6 characters';
@@ -115,10 +115,10 @@ class RegisterScreen extends StatelessWidget {
                                 },
                                 prefixIcon: Image.asset("assets/images/lock.png",color: mainColor,),
                                 suffixIcon: IconButton(onPressed: (){
-                                  controller.visible();
+                                  controller.Visibilty();
 
 
-                                },icon: controller.isVisible? const Icon(Icons.visibility_off , color: Colors.black54,)
+                                },icon: controller.isVisibilty? const Icon(Icons.visibility_off , color: Colors.black54,)
                                   : const Icon(Icons.visibility, color: Colors.black54,),),
                                 hintText: 'Password',
 
@@ -135,7 +135,7 @@ class RegisterScreen extends StatelessWidget {
                                String name=nameController.text.trim();
                                String email=emailController.text.trim();
                                String password=passwordController.text;
-                               controller.registerFirebase(
+                               controller.signUpUsingFirebase(
                                    name: name,
                                    email: email,
                                    password: password);

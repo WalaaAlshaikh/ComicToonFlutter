@@ -76,7 +76,7 @@ class ForgetPass extends StatelessWidget {
 
                   if (formKey.currentState!.validate()) {
                     String email = emailController.text.trim();
-                    controller.resetPass(email);
+                    controller.resetPassword(email);
                   }
 
                 });
