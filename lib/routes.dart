@@ -1,3 +1,4 @@
+import 'package:comic_toon_flutter/logic/bindings/comic_binding.dart';
 import 'package:comic_toon_flutter/views/home.dart';
 import 'package:comic_toon_flutter/views/main_screen.dart';
 import 'package:comic_toon_flutter/views/screen.dart';
@@ -48,6 +49,7 @@ class AppRoutes {
     GetPage(
       name: Routes.comicScreen,
       page: () => HomeScreen(),
+      binding: ComicBinding()
     ),
     // GetPage(
     //   name: Routes.addProductForm,

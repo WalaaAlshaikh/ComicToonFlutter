@@ -6,9 +6,9 @@ import 'package:get/get.dart';
 import '../utils/theme.dart';
 
 
-class Screen extends StatelessWidget {
-   Screen({Key? key}) : super(key: key);
-final controller =Get.put(ComicController());
+class CardItem extends StatelessWidget {
+   CardItem({Key? key}) : super(key: key);
+final controller =Get.find<ComicController>();
   @override
   Widget build(BuildContext context) {
     return  Obx(() {
@@ -20,9 +20,11 @@ final controller =Get.put(ComicController());
         );
       } else{
         return Expanded(
-          child:
+          child:controller.searchList.isEmpty && controller.searchController.text.isNotEmpty ?
+          Image.asset("assets/images/search_empry_light.png")
+              :
           GridView.builder(
-            itemCount: controller.comicList.length,
+            itemCount: controller.searchList.isEmpty? controller.comicList.length : controller.searchList.length,
             gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                 childAspectRatio: 0.8,
                 mainAxisSpacing: 9.0,
@@ -39,7 +41,13 @@ final controller =Get.put(ComicController());
 
                     });
               } else{
-                return Container();
+                return buildCard(image: controller.searchList[index].image.imageUrl,
+                    name:  controller.searchList[index].name,
+                    id: controller.searchList[index].description,
+                    comicModel: controller.searchList[index],
+                    onTap: (){
+
+                    });
               }
 
             },),

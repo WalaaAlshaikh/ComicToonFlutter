@@ -1,5 +1,6 @@
 import 'package:comic_toon_flutter/utils/text_utils.dart';
 import 'package:comic_toon_flutter/views/screen.dart';
+import 'package:comic_toon_flutter/views/widgets/comic/search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -39,7 +40,7 @@ class HomeScreen extends StatelessWidget {
                       fontSize: 28,
                       color: Colors.white),
                   const SizedBox(height: 18,),
-
+                  SearchFormText(),
                 ],
               ),
             ) ,
@@ -58,7 +59,7 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20,),
-          Screen(),
+          CardItem(),
 
 
         ],
