@@ -28,15 +28,13 @@ class RegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  SafeArea(
-        child: Scaffold(
-          backgroundColor: context.theme.backgroundColor,
-          appBar: AppBar(
-            backgroundColor:Get.isDarkMode? Colors.grey.shade700: Colors.white ,
-            elevation: 0,
-          ),
-
-          body: SingleChildScrollView(
-            child: Column(
+      child: Scaffold(
+        backgroundColor: Colors.white,
+       
+        body: Stack(
+          children: [
+            Positioned(child: Image.asset("assets/images/Colors.png",fit: BoxFit.fill,),left: 112,),
+            Column(
               children: [
                 SizedBox(
                   width:double.infinity,
@@ -46,23 +44,13 @@ class RegisterScreen extends StatelessWidget {
                   child: Form(
                     key:formKey ,
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+
                       children: [
-                        Row(
-                          children:  [
-                            TextUtils(
-                                text: "SIGN",
-                                fontWeight: FontWeight.w500,
-                                fontSize: 30,
-                                color: Get.isDarkMode ?mainColor : mainColor),
-                            SizedBox(width: 5,),
-                            TextUtils(
-                                text: "UP",
-                                fontWeight: FontWeight.w500,
-                                fontSize: 30,
-                                color: Get.isDarkMode ?Colors.white: Colors.black),
-                          ],
+                        const Align(alignment: Alignment.centerLeft,child: TextUtils(text: "REGISTER", color: Colors.black, fontWeight: FontWeight.bold, fontSize: 25)),
+                        const SizedBox(
+                          height: 20,
                         ),
-                        const SizedBox(height: 50,),
                         AuthTextFromField(
                           controller: nameController,
                           maxLines: 1,
@@ -124,7 +112,7 @@ class RegisterScreen extends StatelessWidget {
 
                               );
                             } ),
-                       SizedBox(height: 10.h,),
+                       SizedBox(height: 3.h,),
 
                        GetBuilder<AuthController>(builder: (_){
                          return  AuthButton(
@@ -142,15 +130,22 @@ class RegisterScreen extends StatelessWidget {
 
 
                              }
+                             showDialog(
+                               context: context,
+                               builder: (context) {
+                                 return const Center(child: CircularProgressIndicator());
+                               },
+                             );
 
                          }
                          ,);
                        }),
+                        SizedBox(height: 0.5.h,),
                         Align(
                           alignment: Alignment.centerRight,
                           child:
                           Container_Under(
-                            text: "Already have an account?",
+                            text: "Already have an account? ",
                             onPressed: () {
                               Get.offNamed(Routes.loginScreen);
                             },
@@ -164,9 +159,11 @@ class RegisterScreen extends StatelessWidget {
 
               ],
             ),
-          ),
+          ],
+        ),
 
 
-        ),);
+      ),
+    );
   }
 }
