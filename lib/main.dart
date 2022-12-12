@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.blue,
       ),
-     initialRoute: AppRoutes.login ,
+     initialRoute: Routes.comicScreen ,
       getPages:AppRoutes.routes,
     );
   });
