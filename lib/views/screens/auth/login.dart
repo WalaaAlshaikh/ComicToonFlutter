@@ -22,7 +22,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: context.theme.backgroundColor,
+        backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Get.isDarkMode ? Colors.grey.shade700 : Colors.white,
           elevation: 0,
@@ -39,28 +39,11 @@ class LoginScreen extends StatelessWidget {
                   child: Form(
                     key: formKey,
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Row(
-                          children: [
-                            TextUtils(
-                                text: "LOG",
-                                fontWeight: FontWeight.w500,
-                                fontSize: 30,
-                                color: Get.isDarkMode ? mainColor : mainColor),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            TextUtils(
-                                text: "IN",
-                                fontWeight: FontWeight.w500,
-                                fontSize: 30,
-                                color: Get.isDarkMode
-                                    ? Colors.white
-                                    : Colors.black),
-                          ],
-                        ),
+                       const Align(alignment: Alignment.centerLeft,child: TextUtils(text: "LOGIN", color: Colors.black, fontWeight: FontWeight.bold, fontSize: 25)),
                         const SizedBox(
-                          height: 50,
+                          height: 10,
                         ),
                         AuthTextFromField(
                           controller: emailController,
@@ -139,6 +122,7 @@ class LoginScreen extends StatelessWidget {
                               if (formKey.currentState!.validate()) {
                                 String email = emailController.text.trim();
                                 String password = passwordController.text;
+                                controller.displayUserEmail.value = email;
 
                                 controller.loginUsingFierbase(
                                     email: email, password: password);
@@ -146,11 +130,14 @@ class LoginScreen extends StatelessWidget {
                             },
                           );
                         }),
+                        const SizedBox(
+                          height: 5,
+                        ),
                         Align(
                           alignment: Alignment.centerRight,
                           child:
                           Container_Under(
-                            text: "Don't have an account?",
+                            text: "Don't have an account? ",
                             onPressed: () {
                               Get.offNamed(Routes.signUpScreen);
                             },

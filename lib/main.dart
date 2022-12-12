@@ -1,4 +1,5 @@
 import 'package:comic_toon_flutter/routes.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,6 +8,7 @@ import 'package:sizer/sizer.dart';
 
 
 import 'firebase_options.dart';
+import 'logic/bindings/auth_binding.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,8 +34,12 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.blue,
       ),
-     initialRoute: Routes.comicScreen ,
+      initialRoute: FirebaseAuth.instance.currentUser != null ||
+          GetStorage().read<bool>("auth") == true
+          ? AppRoutes.main
+          : AppRoutes.login,
       getPages:AppRoutes.routes,
+      initialBinding: AuthBinding(),
     );
   });
 }}

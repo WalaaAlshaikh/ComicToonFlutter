@@ -1,3 +1,5 @@
+import 'package:comic_toon_flutter/views/screens/comic/home.dart';
+import 'package:comic_toon_flutter/views/screens/setting/profile.dart';
 import 'package:comic_toon_flutter/views/screens/setting/settings_screen.dart';
 import 'package:get/get.dart';
 
@@ -7,7 +9,9 @@ class MainController  extends GetxController{
 
   // we need to create binding file for main screen to link the pages together
   final taps=[
-    SettingScreen(),
+    HomeScreen(),
+    ProfileScreen(),
+
 
 
   ].obs;
@@ -15,10 +19,10 @@ class MainController  extends GetxController{
   //here we need to change the title in the app bar based on the taps in the bottom nav
 
   final title=[
-    "Admin Page",
+    "Comic Books",
     "Book Store",
-    "Payment",
-    "Profile",
+    "Bookmark",
+    "",
   ].obs;
 
 

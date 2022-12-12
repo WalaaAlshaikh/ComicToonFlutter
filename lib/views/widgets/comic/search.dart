@@ -18,7 +18,7 @@ class SearchFormText extends StatelessWidget {
        controller.addSearchToList(searchName);
       },
       decoration:  InputDecoration(
-        fillColor: Get.isDarkMode ? Colors.black: Colors.white,
+        fillColor: Colors.grey.shade200,
         focusColor: Colors.red,
         prefixIcon: const Icon(Icons.search, color: Colors.grey,),
         suffixIcon:controller.searchController.text.isNotEmpty ? IconButton(onPressed: (){

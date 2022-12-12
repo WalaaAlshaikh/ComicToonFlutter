@@ -1,11 +1,12 @@
 import 'package:comic_toon_flutter/logic/bindings/comic_binding.dart';
-import 'package:comic_toon_flutter/views/home.dart';
+import 'package:comic_toon_flutter/logic/bindings/mainBinding.dart';
+import 'package:comic_toon_flutter/views/screens/comic/home.dart';
 import 'package:comic_toon_flutter/views/main_screen.dart';
-import 'package:comic_toon_flutter/views/screen.dart';
+import 'package:comic_toon_flutter/views/widgets/comic/carditem.dart';
 import 'package:comic_toon_flutter/views/screens/auth/forgot_password.dart';
 import 'package:comic_toon_flutter/views/screens/auth/login.dart';
 import 'package:comic_toon_flutter/views/screens/auth/register.dart';
-import 'package:comic_toon_flutter/views/screens/comic_screen.dart';
+
 import 'package:comic_toon_flutter/views/screens/setting/edit_profile_screen.dart';
 import 'package:comic_toon_flutter/views/screens/setting/profile.dart';
 import 'package:comic_toon_flutter/views/screens/setting/settings_screen.dart';
@@ -45,7 +46,7 @@ class AppRoutes {
     GetPage(
         name: Routes.mainScreen,
         page: () => MainScreen(),
-        bindings:[ AuthBinding(), ]),
+        bindings:[ AuthBinding(),ComicBinding(),MainBinding() ]),
     GetPage(
       name: Routes.comicScreen,
       page: () => HomeScreen(),

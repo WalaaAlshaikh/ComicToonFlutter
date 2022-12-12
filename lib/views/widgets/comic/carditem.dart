@@ -3,7 +3,7 @@ import 'package:comic_toon_flutter/models/comic_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../utils/theme.dart';
+import '../../../utils/theme.dart';
 
 
 class CardItem extends StatelessWidget {

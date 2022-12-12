@@ -1,3 +1,4 @@
+import 'package:comic_toon_flutter/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,50 +18,51 @@ class MainScreen extends StatelessWidget {
     return SafeArea(
         child: Obx(() => Scaffold(
           // this will enable the theme in backgroundColor // it will not change until we go to main.dart
-          backgroundColor: context.theme.backgroundColor,
+          backgroundColor:Colors.white,
           appBar: AppBar(
-            elevation: 0,
-            backgroundColor: Colors.teal,
+            elevation: 1,
+            backgroundColor: Colors.white,
             //backgroundColor: Get.isDarkMode ? darkGreyClr : mainColor,
             // here the title will change based on the taps on the nav bar and it change by the current index that we define in controller
-            title: Text(controller.title[controller.currentIndex.value]),
+            title: Text(controller.title[controller.currentIndex.value],style: TextStyle(color: Colors.black),),
             centerTitle: true,
           ),
           // we disable this because we need to change the mode based on the click on the icon
           // backgroundColor: Get.isDarkMode? Colors.white :darkGreyClr,
           bottomNavigationBar: BottomNavigationBar(
             elevation: 3,
-            backgroundColor: Colors.white,
+            backgroundColor: Colors.grey.shade300,
             currentIndex: controller.currentIndex.value,
+            selectedLabelStyle: TextStyle(color: Colors.red),
+            unselectedLabelStyle:TextStyle(color: Colors.black),
+            unselectedItemColor: Colors.black,
+            selectedItemColor: Colors.red,
             items: [
               BottomNavigationBarItem(
-                  activeIcon: const Icon(Icons.home,
-                      color:  Colors.black),
-                  icon: Icon(
-                    Icons.home,
-                    color: Get.isDarkMode ? Colors.white : Colors.black,
-                  ),
-                  label: ""),
+                  activeIcon: Image.asset("assets/images/comic 1.png",color: Colors.red,),
+                  icon: Image.asset("assets/images/comic 1.png",color: Colors.black,),
+                  label: "comics",),
+
               BottomNavigationBarItem(
-                  activeIcon: const Icon(Icons.category,
-                      color:  Colors.black),
-                  icon: Icon(Icons.category,
+                  activeIcon: const Icon(Icons.video_call_outlined,
+                      color:  Colors.red),
+                  icon: Icon(Icons.video_call_outlined,
                       color: Get.isDarkMode ? Colors.white : Colors.black),
-                  label: ""),
+                  label: "videos",),
               BottomNavigationBarItem(
-                  activeIcon: const Icon(Icons.shopping_cart,
-                      color:  Colors.black),
-                  icon: Icon(Icons.shopping_cart,
+                  activeIcon: const Icon(Icons.bookmark_outlined,
+                      color:  Colors.red),
+                  icon: Icon(Icons.bookmark_outlined,
                       color: Get.isDarkMode ? Colors.white : Colors.black),
-                  label: ""),
+                  label: "saved"),
               BottomNavigationBarItem(
-                  activeIcon: const Icon(Icons.person,
-                      color:  Colors.black),
-                  icon: Icon(Icons.person,
+                  activeIcon: const Icon(Icons.person_outline,
+                      color:  Colors.red),
+                  icon: Icon(Icons.person_outline,
                       color: Get.isDarkMode ? Colors.white : Colors.black),
-                  label: ""),
+                  label: "profile"),
             ],
-            type: BottomNavigationBarType.shifting,
+            type: BottomNavigationBarType.fixed,
             onTap: (index) {
               // adding this line because when he click on the items the index also change based on the click
               controller.currentIndex.value = index;
@@ -71,7 +73,7 @@ class MainScreen extends StatelessWidget {
 
           body: IndexedStack(
             index: controller.currentIndex.value,
-            children: controller.taps as List<Widget>,
+            children: controller.taps,
           ),
         )));
   }
