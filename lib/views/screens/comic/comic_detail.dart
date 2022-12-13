@@ -38,29 +38,25 @@ class ComicDetails extends StatelessWidget {
                   Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
                     children: [
-                    Container(
-                      child: Column(children: [
-                        Row( children: [
-                          Icon(Icons.note_alt_outlined),
-                          SizedBox(width: 3,),
-                          TextUtils(text: "Publisher", color: Colors.black, fontWeight: FontWeight.bold, fontSize: 13)
-                        ],),
-                        SizedBox(height: 5,),
-                        TextUtils(text: "18k", color: Colors.grey.shade700, fontWeight: FontWeight.w700, fontSize: 14)
+                    Column(children: [
+                      Row( children: const [
+                        Icon(Icons.note_alt_outlined),
+                        SizedBox(width: 3,),
+                        TextUtils(text: "Publisher", color: Colors.black, fontWeight: FontWeight.bold, fontSize: 13)
                       ],),
-                    ),
-                    VerticalDivider(thickness: 2,color: Colors.black,),
-                    Container(
-                      child: Column(children: [
-                        Row( children: [
-                          Icon(Icons.calendar_today),
-                          SizedBox(width: 3,),
-                          TextUtils(text: "Issue Year", color: Colors.black, fontWeight: FontWeight.bold, fontSize: 13)
-                        ],),
-                        SizedBox(height: 5,),
-                        TextUtils(text: "18k", color: Colors.grey.shade700, fontWeight: FontWeight.w700, fontSize: 14)
+                      const SizedBox(height: 5,),
+                      TextUtils(text: comicModel.publisher.publishName, color: Colors.grey.shade700, fontWeight: FontWeight.w700, fontSize: 14)
+                    ],),
+                    const VerticalDivider(thickness: 2,color: Colors.black,),
+                    Column(children: [
+                      Row( children: const [
+                        Icon(Icons.calendar_today),
+                        SizedBox(width: 3,),
+                        TextUtils(text: "Issue Year", color: Colors.black, fontWeight: FontWeight.bold, fontSize: 13)
                       ],),
-                    )
+                      const SizedBox(height: 5,),
+                      TextUtils(text: comicModel.year, color: Colors.grey.shade700, fontWeight: FontWeight.w700, fontSize: 14)
+                    ],)
 
                   ],),
                   const SizedBox(height: 10),

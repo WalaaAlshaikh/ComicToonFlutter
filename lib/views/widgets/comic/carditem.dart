@@ -38,6 +38,8 @@ final controller =Get.find<ComicController>();
                     name:  controller.comicList[index].name,
                     id: controller.comicList[index].description,
                     comicModel: controller.comicList[index],
+                    year: controller.comicList[index].year,
+                    publisher: controller.comicList[index].publisher.publishName,
                     onTap: (){
                       Get.to(ComicDetails(comicModel:controller.comicList[index] ,));
 
@@ -46,7 +48,9 @@ final controller =Get.find<ComicController>();
                 return buildCard(image: controller.searchList[index].image.imageUrl,
                     name:  controller.searchList[index].name,
                     id: controller.searchList[index].description,
+                    year: controller.searchList[index].year,
                     comicModel: controller.searchList[index],
+                    publisher: controller.searchList[index].publisher.publishName,
                     onTap: (){
                       Get.to(ComicDetails(comicModel:controller.searchList[index] ,));
 
@@ -65,6 +69,8 @@ final controller =Get.find<ComicController>();
       { required String image,
         required String name,
         required String id,
+        required String year,
+        required String publisher,
         required Comic comicModel ,
         required Function() onTap}
       ){

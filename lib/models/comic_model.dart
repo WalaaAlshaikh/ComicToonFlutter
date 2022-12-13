@@ -4,16 +4,20 @@ import 'dart:convert';
 class Comic {
   late String name;
   late int id;
+  late String year;
   late String description;
   late Pic image;
+  late Publisher publisher;
 
-  Comic(this.name, this.description, this.image,this.id);
+  Comic(this.name, this.description, this.image,this.id,this.year,this.publisher);
 
   Comic.fromJson(Map<String, dynamic> map) {
     image = Pic.fromJson(map["image"]);
+    publisher = Publisher.fromJson(map["publisher"]);
     name = map["name"] ?? '';
     description = map["description"] ?? '';
     id = map["id"] ?? '';
+    year = map["start_year"] ?? '';
   }
 }
 
@@ -23,6 +27,15 @@ class Pic {
   Pic(this.imageUrl);
   Pic.fromJson(Map<String, dynamic> map) {
     imageUrl = map["small_url"] as String;
+  }
+}
+
+class Publisher {
+  late String publishName;
+
+  Publisher(this.publishName);
+  Publisher.fromJson(Map<String, dynamic> map) {
+    publishName = map["name"] as String;
   }
 }
 
