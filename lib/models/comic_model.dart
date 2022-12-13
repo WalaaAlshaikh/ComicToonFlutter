@@ -9,7 +9,15 @@ class Comic {
   late Pic image;
   late Publisher publisher;
 
-  Comic(this.name, this.description, this.image,this.id,this.year,this.publisher);
+  Comic(
+      {
+    required this.name,
+    required this.description,
+    required this.image,
+    required this.id,
+    required this.year,
+    required this.publisher,
+  });
 
   Comic.fromJson(Map<String, dynamic> map) {
     image = Pic.fromJson(map["image"]);
@@ -19,6 +27,16 @@ class Comic {
     id = map["id"] ?? '';
     year = map["start_year"] ?? '';
   }
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "name": name,
+    "description": description,
+    "year": year,
+    "imageUrl": image.imageUrl,
+    "publisher": publisher.publishName,
+
+  };
 }
 
 class Pic {

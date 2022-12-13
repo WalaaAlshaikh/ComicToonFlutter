@@ -27,7 +27,7 @@ final controller =Get.find<ComicController>();
           GridView.builder(
             itemCount: controller.searchList.isEmpty? controller.comicList.length : controller.searchList.length,
             gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                childAspectRatio: 0.9,
+                childAspectRatio: 0.93,
                 mainAxisSpacing: 10,
                 crossAxisSpacing: 2,
                 maxCrossAxisExtent: 200
@@ -107,7 +107,7 @@ final controller =Get.find<ComicController>();
 
                 ),
                 Padding(
-                  padding:  EdgeInsets.only(left: 5 ,right: 5, top: 10),
+                  padding:  EdgeInsets.only(left: 5 ,right: 5, top: 14),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

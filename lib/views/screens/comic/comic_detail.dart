@@ -20,10 +20,13 @@ class ComicDetails extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(leading: IconButton(onPressed: Get.back,icon: Icon(Icons.arrow_back_ios,color: Colors.black,),),title: Text(comicModel.name, style: TextStyle(color: Colors.black),),backgroundColor: Colors.white,
-        actions: [IconButton(onPressed:() {
-          controller.manageFav(comicModel.id);
-        }, icon:Obx(()=> controller.isFav(
-            comicModel.id)?Icon(Icons.bookmark_outlined,color: Colors.red,): Icon(Icons.bookmark_add_outlined,color: Colors.black,)) ,)],),
+        actions: [
+          IconButton(onPressed:() async{
+          await controller.addComicToFireStore(comicModel);
+
+        }, icon: controller.isFav(
+            comicModel.id)?Icon(Icons.bookmark_outlined,color: Colors.red,): Icon(Icons.bookmark_add_outlined,color: Colors.black,))
+      ],),
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Padding(
