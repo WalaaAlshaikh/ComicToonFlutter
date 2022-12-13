@@ -60,8 +60,11 @@ class ComicController extends GetxController{
 
   void manageFav( int id ) async {
     // navigate the index inside the list where its id equal to the id that i choose
-    var indexWanted= favList.indexWhere((element) => element.id== id);
-    print("-------------");
+    var indexWanted= favList.indexWhere((element) {
+      print("-----------------${element.id}");
+      return element.id== id;
+    });
+    print("------------- $id");
     print(indexWanted);
     print("-------------");
 

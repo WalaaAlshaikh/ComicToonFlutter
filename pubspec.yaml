@@ -45,6 +45,7 @@ dependencies:
   firebase_storage: ^11.0.7
   image_picker: ^0.8.6
   readmore: ^2.2.0
+  flutter_html: ^2.2.1
 
 
 dev_dependencies:

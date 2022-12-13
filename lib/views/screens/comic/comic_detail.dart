@@ -2,6 +2,7 @@ import 'package:comic_toon_flutter/logic/controllers/comic_controller.dart';
 import 'package:comic_toon_flutter/models/comic_model.dart';
 import 'package:comic_toon_flutter/utils/text_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:readmore/readmore.dart';
@@ -21,8 +22,8 @@ class ComicDetails extends StatelessWidget {
         appBar: AppBar(leading: IconButton(onPressed: Get.back,icon: Icon(Icons.arrow_back_ios,color: Colors.black,),),title: Text(comicModel.name, style: TextStyle(color: Colors.black),),backgroundColor: Colors.white,
         actions: [IconButton(onPressed:() {
           controller.manageFav(comicModel.id);
-          Get.toNamed(Routes.productsFavourites);
-        }, icon: Icon(Icons.bookmark_add_outlined,color: Colors.black,))],),
+        }, icon:Obx(()=> controller.isFav(
+            comicModel.id)?Icon(Icons.bookmark_outlined,color: Colors.red,): Icon(Icons.bookmark_add_outlined,color: Colors.black,)) ,)],),
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Padding(
@@ -60,6 +61,7 @@ class ComicDetails extends StatelessWidget {
 
                   ],),
                   const SizedBox(height: 10),
+                  Html(data:comicModel.description),
                   ReadMoreText(
                     comicModel.description,
                     trimLines: 3,

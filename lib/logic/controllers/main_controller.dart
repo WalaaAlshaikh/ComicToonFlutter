@@ -1,7 +1,10 @@
+import 'package:comic_toon_flutter/views/screens/comic/favourite.dart';
 import 'package:comic_toon_flutter/views/screens/comic/home.dart';
 import 'package:comic_toon_flutter/views/screens/setting/profile.dart';
 import 'package:comic_toon_flutter/views/screens/setting/settings_screen.dart';
 import 'package:get/get.dart';
+
+import '../../views/screens/comic/video_screen.dart';
 
 class MainController  extends GetxController{
   RxInt currentIndex=0.obs;
@@ -10,6 +13,8 @@ class MainController  extends GetxController{
   // we need to create binding file for main screen to link the pages together
   final taps=[
     HomeScreen(),
+    VideoScreen(),
+    FavScreen(),
     ProfileScreen(),
 
 
@@ -20,9 +25,9 @@ class MainController  extends GetxController{
 
   final title=[
     "Comic Books",
-    "Book Store",
-    "Bookmark",
-    "",
+    "Video",
+    "Marked Comic",
+    "Profile",
   ].obs;
 
 

@@ -10,9 +10,6 @@ class FavScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      appBar: AppBar(title: const Text("Marked Comic"),),
-        backgroundColor: context.theme.backgroundColor,
-
         body:Obx((){
 
           if(controller.favList.isEmpty){
@@ -22,12 +19,12 @@ class FavScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SizedBox(height: 100,width: 100,
-                      child: Image.asset("assets/images/heart.png"),),
+                      child: Image.asset("assets/images/Mask group.png"),),
                     SizedBox(height: 20),
-                    Text("Please,Add your favourite products",
+                    Text("Mark Your favorite comics",
                       style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Get.isDarkMode? Colors.white :Colors.black54,
+                          fontWeight: FontWeight.normal,
+                          color: Get.isDarkMode? Colors.white :Colors.grey,
                           fontSize: 18
                       ),),
 
@@ -44,7 +41,7 @@ class FavScreen extends StatelessWidget {
 
                   },
                   separatorBuilder: (context,index){
-                    return Divider(
+                    return const Divider(
                       color: Colors.grey,
                       thickness: 1,
                     );
@@ -68,9 +65,10 @@ class FavScreen extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.all(10),
-      child: SizedBox(
+      child: Container(
         width: double.infinity,
         height: 100,
+
         child: Row(
           children: [
             SizedBox(
@@ -105,7 +103,7 @@ class FavScreen extends StatelessWidget {
             IconButton(onPressed: (){
               controller.manageFav(id);
             },
-                icon: Icon(Icons.favorite,color: Colors.red, size: 30,))
+                icon: Icon(Icons.bookmark,color: Colors.red.shade700, size: 30,))
           ],
         ),
       ),
