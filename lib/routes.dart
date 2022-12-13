@@ -1,5 +1,6 @@
 import 'package:comic_toon_flutter/logic/bindings/comic_binding.dart';
 import 'package:comic_toon_flutter/logic/bindings/mainBinding.dart';
+import 'package:comic_toon_flutter/views/screens/comic/favourite.dart';
 import 'package:comic_toon_flutter/views/screens/comic/home.dart';
 import 'package:comic_toon_flutter/views/main_screen.dart';
 import 'package:comic_toon_flutter/views/widgets/comic/carditem.dart';
@@ -61,11 +62,11 @@ class AppRoutes {
     //   name: Routes.customerHome,
     //   page: () => CustomerHome(),
     // ),
-    // GetPage(
-    //   name: Routes.productsFavourites,
-    //   page: () => ProductsFavourites(),
-    //   binding: BookBinding(),
-    // ),
+    GetPage(
+      name: Routes.productsFavourites,
+      page: () => FavScreen(),
+      binding: ComicBinding(),
+    ),
 
   ];
 }

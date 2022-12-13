@@ -3,15 +3,17 @@ import 'dart:convert';
 
 class Comic {
   late String name;
+  late int id;
   late String description;
   late Pic image;
 
-  Comic(this.name, this.description, this.image);
+  Comic(this.name, this.description, this.image,this.id);
 
   Comic.fromJson(Map<String, dynamic> map) {
     image = Pic.fromJson(map["image"]);
     name = map["name"] ?? '';
     description = map["description"] ?? '';
+    id = map["id"] ?? '';
   }
 }
 

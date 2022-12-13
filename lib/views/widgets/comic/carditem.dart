@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../utils/theme.dart';
+import '../../screens/comic/comic_detail.dart';
 
 
 class CardItem extends StatelessWidget {
@@ -26,9 +27,9 @@ final controller =Get.find<ComicController>();
           GridView.builder(
             itemCount: controller.searchList.isEmpty? controller.comicList.length : controller.searchList.length,
             gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                childAspectRatio: 0.8,
-                mainAxisSpacing: 9.0,
-                crossAxisSpacing: 6,
+                childAspectRatio: 0.9,
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 2,
                 maxCrossAxisExtent: 200
             ),
             itemBuilder: (context,index) {
@@ -38,6 +39,7 @@ final controller =Get.find<ComicController>();
                     id: controller.comicList[index].description,
                     comicModel: controller.comicList[index],
                     onTap: (){
+                      Get.to(ComicDetails(comicModel:controller.comicList[index] ,));
 
                     });
               } else{
@@ -46,6 +48,7 @@ final controller =Get.find<ComicController>();
                     id: controller.searchList[index].description,
                     comicModel: controller.searchList[index],
                     onTap: (){
+                      Get.to(ComicDetails(comicModel:controller.searchList[index] ,));
 
                     });
               }
@@ -66,13 +69,13 @@ final controller =Get.find<ComicController>();
         required Function() onTap}
       ){
 
-    return  Padding(padding: EdgeInsets.all(5),
+    return  Padding(padding: EdgeInsets.all(7),
         child: InkWell(
           onTap: onTap,
           child: Container(
             decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(15),
+                color: Colors.black,
+                borderRadius: BorderRadius.circular(10),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.grey.withOpacity(0.2),
@@ -87,45 +90,28 @@ final controller =Get.find<ComicController>();
 
                 Container(
                   width: double.infinity,
-                  height: 140,
+                  height: 145,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(15),
 
                   ),
                   child: Image.network(image,
-                    fit:BoxFit.cover ,) ,
+                    fit:BoxFit.fill ,) ,
 
                 ),
                 Padding(
-                  padding:  EdgeInsets.only(left: 15.0 ,right: 10, top: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  padding:  EdgeInsets.only(left: 5 ,right: 5, top: 10),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(" $name",
-                        style: TextStyle(
-                            color: Get.isDarkMode ?Colors.black :Colors.black,
-                            fontWeight: FontWeight.bold
-                        ),),
-                      Container(
-                        height:20 ,
-                        width: 45,
-                        decoration: BoxDecoration(
-                            color: mainColor,
-                            borderRadius: BorderRadius.circular(10)
-                        ),
-                        child: Padding(padding: EdgeInsets.only(left: 3,right: 2),
-                          child:Row(
-                            children: [
-                              // CustomText(
-                              //     text: "$na",
-                              //     fontWeight: FontWeight.bold,
-                              //     fontSize: 13,
-                              //     color: Colors.white),
-                              // Icon(Icons.star,size: 13,color: Colors.white,)
-
-                            ],
-                          ) ,),
+                      Align(alignment: Alignment.center,
+                        child: Text(" $name",
+                          style: TextStyle(
+                              color: Get.isDarkMode ?Colors.black :Colors.white,
+                              fontWeight: FontWeight.bold,fontSize: 12,
+                          ),textAlign: TextAlign.center,
+                      ),
                       )
                     ],
                   ),

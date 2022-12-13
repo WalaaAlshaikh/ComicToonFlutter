@@ -20,7 +20,8 @@ class MainScreen extends StatelessWidget {
           // this will enable the theme in backgroundColor // it will not change until we go to main.dart
           backgroundColor:Colors.white,
           appBar: AppBar(
-            elevation: 1,
+
+            elevation: 0,
             backgroundColor: Colors.white,
             //backgroundColor: Get.isDarkMode ? darkGreyClr : mainColor,
             // here the title will change based on the taps on the nav bar and it change by the current index that we define in controller
