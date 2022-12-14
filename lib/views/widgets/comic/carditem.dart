@@ -41,7 +41,7 @@ final controller =Get.find<ComicController>();
                     year: controller.comicList[index].year,
                     publisher: controller.comicList[index].publisher.publishName,
                     onTap: (){
-                      Get.to(ComicDetails(comicModel:controller.comicList[index] ,));
+                      Get.to(()=> ComicDetails(comicModel:controller.comicList[index] ,));
 
                     });
               } else{
@@ -52,7 +52,7 @@ final controller =Get.find<ComicController>();
                     comicModel: controller.searchList[index],
                     publisher: controller.searchList[index].publisher.publishName,
                     onTap: (){
-                      Get.to(ComicDetails(comicModel:controller.searchList[index] ,));
+                      Get.to(()=>ComicDetails(comicModel:controller.searchList[index] ,));
 
                     });
               }

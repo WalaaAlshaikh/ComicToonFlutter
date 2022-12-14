@@ -12,8 +12,9 @@ class ComicController extends GetxController {
   var comicList = <Comic>[].obs;
   var isLoading = true.obs;
   var searchList = <Comic>[].obs;
-  var favList =<Comic> [].obs;
+  var favList =<Favourite> [].obs;
   var box = GetStorage();
+  final fireRef=FirebaseFirestore.instance.collection("users");
 
   TextEditingController searchController = TextEditingController();
   @override
@@ -66,7 +67,7 @@ class ComicController extends GetxController {
       await box.remove("isFav");
     } else {
       // adding items from product model (parent list) to favourite list (child) based on the id
-      favList.add(comicList.firstWhere((element) => element.id == id));
+      favList.add(favList.firstWhere((element) => element.id == id));
 
       await box.write("isFav", favList);
     }
@@ -76,12 +77,11 @@ class ComicController extends GetxController {
     //navigate in the parent list is the id of its item same as the id that i will give u or not
     return favList.any((element) => element.id == productId);
   }
-  final fireRef=FirebaseFirestore.instance;
+
 
   Future<void> addComicToFireStore(Comic comic) async {
     // we need Reference to firebase
     final comicRef = fireRef
-        .collection("users")
         .doc(authController.displayUserEmail.value)
         .collection("favourite")
         .doc(comic.id.toString());
@@ -97,7 +97,6 @@ class ComicController extends GetxController {
           Get.snackbar("Error", "something went wrong");
         }
 
-        update();
       }).catchError((error) {
         Get.snackbar("Error", "something went wrong");
       });
@@ -106,15 +105,10 @@ class ComicController extends GetxController {
 
   Future<void> deleteData(int id) async {
 
-    await FirebaseFirestore.instance
-        .collection("users")
+    await fireRef
         .doc(authController.displayUserEmail.value)
         .collection("favourite")
         .doc(id.toString())
-        .delete()
-        .whenComplete(() async {
-      Get.snackbar("", "Delete successfully..");
-
-    });
+        .delete();
   }
 }

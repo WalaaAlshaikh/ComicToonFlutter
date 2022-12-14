@@ -47,5 +47,9 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSAppleMusicUsageDescription</key>
+        <string>Access to pick a photo</string>
+        <key>NSPhotoLibraryUsageDescription</key>
+        <string>Access to pick a photo</string>
 </dict>
 </plist>

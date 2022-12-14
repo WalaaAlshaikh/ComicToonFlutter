@@ -4,7 +4,6 @@ import 'package:comic_toon_flutter/utils/text_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:readmore/readmore.dart';
 
 import '../../../routes.dart';
@@ -22,10 +21,12 @@ class ComicDetails extends StatelessWidget {
         appBar: AppBar(leading: IconButton(onPressed: Get.back,icon: Icon(Icons.arrow_back_ios,color: Colors.black,),),title: Text(comicModel.name, style: TextStyle(color: Colors.black),),backgroundColor: Colors.white,
         actions: [
           IconButton(onPressed:() async{
+
           await controller.addComicToFireStore(comicModel);
 
+
         }, icon: controller.isFav(
-            comicModel.id)?Icon(Icons.bookmark_outlined,color: Colors.red,): Icon(Icons.bookmark_add_outlined,color: Colors.black,))
+            comicModel.id)?const Icon(Icons.bookmark_outlined,color: Colors.red,): Icon(Icons.bookmark_add_outlined,color: Colors.black,))
       ],),
         backgroundColor: Colors.white,
         body: SingleChildScrollView(

@@ -57,6 +57,24 @@ class Publisher {
   }
 }
 
+class Favourite {
+  late String name;
+  late int id;
+  late String year;
+  late String description;
+  late String image;
+  late String publisher;
+
+  Favourite(
+      {
+        required this.name,
+        required this.description,
+        required this.image,
+        required this.id,
+        required this.year,
+        required this.publisher,
+      });}
+
 
 // To parse this JSON data, do
 //

@@ -1,10 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:comic_toon_flutter/logic/controllers/auth_controllers.dart';
 import 'package:comic_toon_flutter/logic/controllers/comic_controller.dart';
+import 'package:comic_toon_flutter/models/comic_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-
 
 class FavScreen extends StatelessWidget {
   FavScreen({Key? key}) : super(key: key);
@@ -23,25 +22,71 @@ class FavScreen extends StatelessWidget {
           .snapshots(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return ListView.separated(
-            itemCount: snapshot.data!.docs.length,
-            itemBuilder: (context, index) {
-              return buildFavItem(
-                  image: snapshot.data?.docs[index]['imageUrl'] ?? "",
-                  title: snapshot.data?.docs[index]['name'] ?? "",
-                  id: snapshot.data?.docs[index]['id'] ?? "");
-            },
-            separatorBuilder: (BuildContext context, int index) {
-              return const Divider(
-                color: Colors.grey,
-                thickness: 1,
-              );
-            },
-          );
+
+          controller.favList.value = snapshot.data!.docs
+              .map((e) => Favourite(
+                  name: e["name"],
+                  description: e["description"],
+                  image: e['imageUrl'] ,
+                  id: e["id"],
+                  year: e["year"],
+                  publisher: e["publisher"]))
+              .toList();
+
+          if(controller.favList.isNotEmpty){
+            return ListView.separated(
+              itemCount: snapshot.data!.docs.length,
+              itemBuilder: (context, index) {
+                return buildFavItem(
+                    image: snapshot.data?.docs[index]['imageUrl'] ?? "",
+                    title: snapshot.data?.docs[index]['name'] ?? "",
+                    id: snapshot.data?.docs[index]['id'] ?? "");
+              },
+              separatorBuilder: (BuildContext context, int index) {
+                return const Divider(
+                  color: Colors.grey,
+                  thickness: 1,
+                );
+              },
+            );
+          }else{
+            Center(
+              child:Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(height: 100,width: 100,
+                    child: Image.asset("assets/images/Mask group.png"),),
+                  const SizedBox(height: 20),
+                  Text("Please,Add your favourite products",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Get.isDarkMode? Colors.white :Colors.black54,
+                        fontSize: 18
+                    ),),
+
+                ],
+              ) ,);
+          }
+
         } else if (snapshot.hasError) {
           const Text('No data available right now');
         }
-        return const Center(child: CircularProgressIndicator());
+        return Center(
+          child:Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(height: 100,width: 100,
+                child: Image.asset("assets/images/Mask group.png"),),
+              const SizedBox(height: 20),
+              Text("Mark your favourite comics",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Get.isDarkMode? Colors.white :Colors.black54,
+                    fontSize: 18
+                ),),
+
+            ],
+          ) ,);
       },
     ));
   }
@@ -100,7 +145,7 @@ class FavScreen extends StatelessWidget {
                   controller.deleteData(id);
                 },
                 icon: Icon(
-                  Icons.bookmark,
+                  Icons.delete_forever_outlined,
                   color: Colors.red.shade700,
                   size: 30,
                 ))

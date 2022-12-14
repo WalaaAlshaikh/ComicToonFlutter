@@ -1,5 +1,6 @@
 import 'package:comic_toon_flutter/logic/bindings/comic_binding.dart';
 import 'package:comic_toon_flutter/logic/bindings/mainBinding.dart';
+import 'package:comic_toon_flutter/views/screens/comic/comic_detail.dart';
 import 'package:comic_toon_flutter/views/screens/comic/favourite.dart';
 import 'package:comic_toon_flutter/views/screens/comic/home.dart';
 import 'package:comic_toon_flutter/views/main_screen.dart';
@@ -58,12 +59,9 @@ class AppRoutes {
     //   page: () => AddProductFromScreen(),
     // ),
     //
-    // GetPage(
-    //   name: Routes.customerHome,
-    //   page: () => CustomerHome(),
-    // ),
+
     GetPage(
-      name: Routes.productsFavourites,
+      name: Routes.comicFavourites,
       page: () => FavScreen(),
       binding: ComicBinding(),
     ),
@@ -80,10 +78,9 @@ class Routes {
   static const settingsScreen = '/settingsScreen';
   static const mainScreen = '/mainScreen';
   static const comicScreen = '/ComicScreen';
-  static const addProductForm = '/AddProductFromScreen';
   static const editProduct = '/EditProductScreen';
-  static const customerHome = '/CustomerHome';
-  static const productsFavourites = '/productsFavourites';
-  static const cartScreen= "/cartScreen";
+  static const comicFavourites = '/comicFavourites';
+
+
 
 }
