@@ -25,7 +25,7 @@ class ComicController extends GetxController {
   }
 
   void getComics() async {
-    var comics = await ComicServices.getProduct();
+    var comics = await ComicServices.getComic();
     try {
       isLoading(true);
       if (comics.isNotEmpty) {

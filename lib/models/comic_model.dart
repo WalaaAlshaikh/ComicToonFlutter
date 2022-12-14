@@ -76,6 +76,8 @@ class Favourite {
       });}
 
 
+
+
 // To parse this JSON data, do
 //
 //     final comicModel = comicModelFromJson(jsonString);
