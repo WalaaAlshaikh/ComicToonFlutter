@@ -11,7 +11,6 @@ class VideoController extends GetxController {
   @override
   void onInit() async {
    getVideos();
-
     super.onInit();
   }
 

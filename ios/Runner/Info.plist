@@ -51,5 +51,13 @@
         <string>Access to pick a photo</string>
         <key>NSPhotoLibraryUsageDescription</key>
         <string>Access to pick a photo</string>
+
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>https</string>
+        <string>http</string>
+        <string>tel</string>
+        <string>mailto</string>
+    </array>
 </dict>
 </plist>

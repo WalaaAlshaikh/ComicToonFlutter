@@ -22,11 +22,12 @@ class MainScreen extends StatelessWidget {
           appBar: AppBar(
 
             elevation: 0,
-            backgroundColor: Colors.white,
+            backgroundColor: Colors.transparent,
             //backgroundColor: Get.isDarkMode ? darkGreyClr : mainColor,
             // here the title will change based on the taps on the nav bar and it change by the current index that we define in controller
             title: Text(controller.title[controller.currentIndex.value],style: TextStyle(color: Colors.black),),
             centerTitle: true,
+
           ),
           // we disable this because we need to change the mode based on the click on the icon
           // backgroundColor: Get.isDarkMode? Colors.white :darkGreyClr,

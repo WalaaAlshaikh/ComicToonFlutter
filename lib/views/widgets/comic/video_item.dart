@@ -1,9 +1,13 @@
+import 'dart:async';
+
 import 'package:comic_toon_flutter/logic/controllers/comic_controller.dart';
 import 'package:comic_toon_flutter/logic/controllers/video_controller.dart';
 import 'package:comic_toon_flutter/models/comic_model.dart';
 import 'package:comic_toon_flutter/models/video_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../../utils/theme.dart';
 import '../../screens/comic/comic_detail.dart';
@@ -12,6 +16,14 @@ import '../../screens/comic/comic_detail.dart';
 class VideoItem extends StatelessWidget {
   VideoItem({Key? key}) : super(key: key);
   final controller =Get.find<VideoController>();
+
+  Future<void> launchURL(Uri url) async{
+  if(await canLaunchUrl(url)){
+    await launchUrl(url);
+  }else{
+    throw "Could not launch $url";
+  }
+}
   @override
   Widget build(BuildContext context) {
     return  Obx(() {
@@ -37,9 +49,15 @@ class VideoItem extends StatelessWidget {
                 return buildCard(image: controller.videoList[index].image.imageUrl,
                     name:  controller.videoList[index].name,
                     videoModel: controller.videoList[index],
-                    youtubeId: controller.videoList[index].youtubeId,
                     onTap: (){
-                      // Get.to(()=> ComicDetails(comicModel:controller.comicList[index] ,));
+                  if(controller.videoList[index].youtubeId != null){
+                    final Uri url = Uri.parse("http://www.youtube.com/watch?v=${controller.videoList[index].youtubeId}");
+                    launchURL(url);
+
+                  }else{
+                    return ;
+                  }
+
 
                     });
 
@@ -55,12 +73,11 @@ class VideoItem extends StatelessWidget {
   Widget buildCard(
       { required String image,
         required String name,
-        required String youtubeId,
         required Videos videoModel ,
         required Function() onTap}
       ){
 
-    return  Padding(padding: EdgeInsets.all(7),
+    return  Padding(padding: const EdgeInsets.all(7),
         child: InkWell(
           onTap: onTap,
           child: Container(
@@ -116,4 +133,6 @@ class VideoItem extends StatelessWidget {
 
     );
   }
+
+
 }

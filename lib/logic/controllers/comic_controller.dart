@@ -80,14 +80,31 @@ class ComicController extends GetxController {
 
 
   Future<void> addComicToFireStore(Comic comic) async {
-    // we need Reference to firebase
-    final comicRef = fireRef
-        .doc(authController.displayUserEmail.value)
-        .collection("favourite")
-        .doc(comic.id.toString());
-    final data = comic.toJson(); // insert to fiserbase
-    print("----- ${comicRef.id}");
+
+    var indexWanted = favList.indexWhere((element) {
+      print("-----------------${element.id}");
+      return element.id == comic.id;
+    });
     print("------------- ${comic.id}");
+    print(indexWanted);
+    print("-------------");
+
+    if (indexWanted >= 0) {
+      await fireRef
+          .doc(authController.displayUserEmail.value)
+          .collection("favourite")
+          .doc(comic.id.toString())
+          .delete();
+      Get.snackbar("", "deleted successfully..");
+      Get.toNamed(Routes.mainScreen);
+    } else {
+      final comicRef = fireRef
+          .doc(authController.displayUserEmail.value)
+          .collection("favourite")
+          .doc(comic.id.toString());
+      final data = comic.toJson(); // insert to fiserbase
+      print("----- ${comicRef.id}");
+      print("------------- ${comic.id}");
 
       comicRef.set(data).whenComplete(() {
         if(comicRef.id==comic.id.toString()){
@@ -100,6 +117,9 @@ class ComicController extends GetxController {
       }).catchError((error) {
         Get.snackbar("Error", "something went wrong");
       });
+    }
+    // we need Reference to firebase
+
 
   }
 

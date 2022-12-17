@@ -24,92 +24,97 @@ class ProfileScreen extends StatelessWidget {
       child: Scaffold(
 
           body: GetBuilder<AuthController>(builder: (_){
-            return  Obx(() => Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                children: [
-                  Align(
-                    alignment: Alignment.center,
-                    child: Container(
-                      height: 100,
-                      width: 100,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          image: authController.displayUserPhoto.value == ""
-                              ? const AssetImage("assets/images/avtar.png")
-                          as ImageProvider
-                              : NetworkImage(
-                            authController.displayUserPhoto.value,
+            return  Obx(() => Stack(
+              children: [
+                // Positioned(child: Image.asset("assets/images/Colors.png",fit: BoxFit.fill,),left: 112,),
+                Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    children: [
+                      Align(
+                        alignment: Alignment.center,
+                        child: Container(
+                          height: 100,
+                          width: 100,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              image: authController.displayUserPhoto.value == ""
+                                  ? const AssetImage("assets/images/avtar.png")
+                              as ImageProvider
+                                  : NetworkImage(
+                                authController.displayUserPhoto.value,
+                              ),
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                          fit: BoxFit.cover,
                         ),
                       ),
-                    ),
+                      SizedBox(
+                        height: 2.5.h,
+                      ),
+                      Align(
+                        alignment: Alignment.center,
+                        child: TextUtils(
+                          text: authController.displayUserName.value,
+                          color: Colors.red.shade700,
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 0.6.h,
+                      ),
+                      Align(
+                        alignment: Alignment.center,
+                        child: TextUtils(
+                          text: authController.displayDescription.value,
+                          color: Colors.black87,
+                          fontSize: 9.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 0.6.h,
+                      ),
+                      Align(
+                        alignment: Alignment.center,
+                        child: TextUtils(
+                          text: authController.displayUserEmail.value,
+                          color: Colors.black45,
+                          fontSize: 9.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 5.h,
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: TextUtils(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.bold,
+                          text: "Account",
+                          color: Colors.red.shade700,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 2.5.h,
+                      ),
+                      EditProfile(),
+                      Divider(
+                        color: Colors.grey.shade300,
+                        thickness: 1,
+                      ),
+                      SizedBox(
+                        height: 0.5.h,
+                      ),
+                      SettingsWidget(),
+                    ],
                   ),
-                  SizedBox(
-                    height: 2.5.h,
-                  ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: TextUtils(
-                      text: authController.displayUserName.value,
-                      color: Colors.black,
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 0.6.h,
-                  ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: TextUtils(
-                      text: authController.displayDescription.value,
-                      color: Colors.black87,
-                      fontSize: 9.sp,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 0.6.h,
-                  ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: TextUtils(
-                      text: authController.displayUserEmail.value,
-                      color: Colors.black45,
-                      fontSize: 9.sp,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 5.h,
-                  ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: TextUtils(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.bold,
-                      text: "Account",
-                      color: Colors.grey.shade700,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 2.5.h,
-                  ),
-                  EditProfile(),
-                  Divider(
-                    color: Colors.grey.shade300,
-                    thickness: 1,
-                  ),
-                  SizedBox(
-                    height: 0.5.h,
-                  ),
-                  SettingsWidget(),
-                ],
-              ),
+                ),
+              ],
             ))
               ;
           }) ),

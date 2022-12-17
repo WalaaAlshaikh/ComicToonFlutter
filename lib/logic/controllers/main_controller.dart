@@ -25,7 +25,7 @@ class MainController  extends GetxController{
 
   final title=[
     "Comic Books",
-    "Video",
+    "Videos",
     "Marked Comic",
     "Profile",
   ].obs;

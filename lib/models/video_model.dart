@@ -1,7 +1,7 @@
 class Videos {
   late String name;
   late int id;
-  late String youtubeId;
+   String? youtubeId;
   late Picture image;
   late String url;
 
@@ -24,7 +24,7 @@ class Videos {
   Map<String, dynamic> toJson() => {
         "id": id,
         "name": name,
-        "description": youtubeId,
+        "youtube_id": youtubeId,
         "imageUrl": image.imageUrl,
         "low_url": url,
       };
