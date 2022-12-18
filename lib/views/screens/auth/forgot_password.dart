@@ -28,7 +28,7 @@ class ForgetPass extends StatelessWidget {
       ),
       ),
         leading: IconButton(
-          onPressed: (){Get.back();}, icon: Icon(Icons.arrow_back),
+          onPressed: (){Get.back();}, icon: const Icon(Icons.arrow_back),
         ) ,
       ),
 

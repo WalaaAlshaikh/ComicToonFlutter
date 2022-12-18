@@ -12,9 +12,9 @@ class ComicController extends GetxController {
   var comicList = <Comic>[].obs;
   var isLoading = true.obs;
   var searchList = <Comic>[].obs;
-  var favList =<Favourite> [].obs;
+  var favList = <Favourite>[].obs;
   var box = GetStorage();
-  final fireRef=FirebaseFirestore.instance.collection("users");
+  final fireRef = FirebaseFirestore.instance.collection("users");
 
   TextEditingController searchController = TextEditingController();
   @override
@@ -78,9 +78,7 @@ class ComicController extends GetxController {
     return favList.any((element) => element.id == productId);
   }
 
-
   Future<void> addComicToFireStore(Comic comic) async {
-
     var indexWanted = favList.indexWhere((element) {
       print("-----------------${element.id}");
       return element.id == comic.id;
@@ -107,28 +105,56 @@ class ComicController extends GetxController {
       print("------------- ${comic.id}");
 
       comicRef.set(data).whenComplete(() {
-        if(comicRef.id==comic.id.toString()){
+        if (comicRef.id == comic.id.toString()) {
           Get.snackbar("", "Added successfully..");
           Get.toNamed(Routes.mainScreen);
-        } else{
+        } else {
           Get.snackbar("Error", "something went wrong");
         }
-
       }).catchError((error) {
         Get.snackbar("Error", "something went wrong");
       });
     }
     // we need Reference to firebase
-
-
   }
 
   Future<void> deleteData(int id) async {
-
     await fireRef
         .doc(authController.displayUserEmail.value)
         .collection("favourite")
         .doc(id.toString())
         .delete();
   }
+
+  Future<void> updateData(int id, TextEditingController value) async {
+
+    try{
+      await fireRef
+          .doc(authController.displayUserEmail.value)
+          .collection("favourite")
+          .doc(id.toString())
+          .update({"review": value.text});
+      Get.snackbar(
+        'Success!',
+        "Updated successfully!",
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: Colors.greenAccent,
+        colorText: Colors.white,
+      );
+
+      update();
+
+    }catch (error) {
+      Get.snackbar(
+        'Error!',
+        error.toString(),
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: Colors.red[400],
+        colorText: Colors.white,
+      );
+    }
+
+  }
+
+
 }

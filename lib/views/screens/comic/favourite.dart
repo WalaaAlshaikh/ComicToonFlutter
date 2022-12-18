@@ -4,12 +4,14 @@ import 'package:comic_toon_flutter/logic/controllers/comic_controller.dart';
 import 'package:comic_toon_flutter/models/comic_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sizer/sizer.dart';
 
 class FavScreen extends StatelessWidget {
   FavScreen({Key? key}) : super(key: key);
 
   final controller = Get.put(ComicController());
   final authController = Get.find<AuthController>();
+  final TextEditingController reviewController=TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +43,10 @@ class FavScreen extends StatelessWidget {
                     image: snapshot.data?.docs[index]['imageUrl'] ?? "",
                     title: snapshot.data?.docs[index]['name'] ?? "",
                     id: snapshot.data?.docs[index]['id'] ?? "",
-                issue: snapshot.data?.docs[index]['last_issue']?? "");
+                issue: snapshot.data?.docs[index]['last_issue']?? "",
+                review: snapshot.data?.docs[index]['review']?? "",
+
+                );
               },
               separatorBuilder: (BuildContext context, int index) {
                 return const Divider(
@@ -96,7 +101,8 @@ class FavScreen extends StatelessWidget {
     required String image,
     required String title,
     required int id,
-    required String issue
+    required String issue,
+    required String review,
   }) {
     return Padding(
       padding: const EdgeInsets.all(10),
@@ -147,6 +153,70 @@ class FavScreen extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
+              GetBuilder<ComicController>(
+                builder: (_) => Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    onTap: () {
+                      Get.defaultDialog(
+                          title: '',
+                          content: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              TextField(
+                                controller:reviewController,
+                                keyboardType: TextInputType.text,
+                                maxLines: 1,
+                                decoration: InputDecoration(
+                                  hintText: review.isNotEmpty? review : "Enter your review",
+                                    hintMaxLines: 1,
+                                    border: const OutlineInputBorder(
+                                        borderSide: BorderSide(color: Colors.green, width: 4.0))),
+                              ),
+                              const SizedBox(
+                                height: 30.0,
+                              ),
+                              ElevatedButton(
+                                onPressed: () {
+                                  if (reviewController
+                                    .text.isNotEmpty) {
+                                 controller.updateData(id, reviewController);
+                                 clearText();
+                                    Get.back();
+                                  } else {
+                                    Get.snackbar("","Enter your review");
+                                  }
+                                },
+                                style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
+                                child: Text(
+                                  'ADD REVIEW',
+                                  style: TextStyle(color: Colors.white, fontSize: 16.0),
+                                ),
+
+                              )
+                            ],
+                          ),
+                          radius: 10.0);
+
+                    },
+                    splashColor: Colors.black,
+                    borderRadius: BorderRadius.circular(0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Add review",
+                          style: TextStyle(
+                              fontSize: 10.sp,
+                              fontWeight: FontWeight.w300,
+                              color: Colors.grey.shade700),
+                        ),
+
+                      ],
+                    ),
+                  ),
+                ),
+              )
                 ],
               ),
             ),
@@ -164,5 +234,9 @@ class FavScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void clearText() {
+    reviewController.clear();
   }
 }
