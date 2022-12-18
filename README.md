@@ -40,8 +40,7 @@ This project represents a Flutter application ComicToon ,that allows user to dis
 * Logout from account.
 * Reset password.
 * Update Profile Content (including name, description and image)
-* Display Comics from 1990s using the API from [ComicVine](https://comicvine.gamespot.com/api/)
-* [Postman API Platform](https://www.postman.com/downloads/) to test the API 
+
 
 
 
@@ -74,9 +73,11 @@ This project represents a Flutter application ComicToon ,that allows user to dis
 * Getx Framework (State management, Dependency Injection and Routing)
 * Firebase Database
 * Responsive layout.
-
+* Display Comics from 1990s using the API from [ComicVine](https://comicvine.gamespot.com/api/)
 
 #### Packages & tools Used:
+
+* [Postman API Platform](https://www.postman.com/downloads/) to test the API 
 * [Get](https://pub.dev/packages/get)
 * [Firebase Auth](https://pub.dev/packages/firebase_auth/install)
 * [Cloud Firestore](https://pub.dev/packages/cloud_firestore/install)
