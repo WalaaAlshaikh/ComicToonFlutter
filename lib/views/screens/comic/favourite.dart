@@ -40,7 +40,8 @@ class FavScreen extends StatelessWidget {
                 return buildFavItem(
                     image: snapshot.data?.docs[index]['imageUrl'] ?? "",
                     title: snapshot.data?.docs[index]['name'] ?? "",
-                    id: snapshot.data?.docs[index]['id'] ?? "");
+                    id: snapshot.data?.docs[index]['id'] ?? "",
+                issue: snapshot.data?.docs[index]['last_issue']?? "");
               },
               separatorBuilder: (BuildContext context, int index) {
                 return const Divider(
@@ -95,6 +96,7 @@ class FavScreen extends StatelessWidget {
     required String image,
     required String title,
     required int id,
+    required String issue
   }) {
     return Padding(
       padding: const EdgeInsets.all(10),
@@ -132,6 +134,15 @@ class FavScreen extends StatelessWidget {
                         color: Get.isDarkMode ? Colors.white : Colors.black,
                         fontWeight: FontWeight.bold,
                         fontSize: 16),
+                  ),
+                  SizedBox(height: 7,),
+                  Text(
+                    "$issue issues",
+                    style: TextStyle(
+                        overflow: TextOverflow.ellipsis,
+                        color: Get.isDarkMode ? Colors.white : Colors.black,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 14),
                   ),
                   const SizedBox(
                     height: 10,
