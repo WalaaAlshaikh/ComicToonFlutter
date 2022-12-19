@@ -1,6 +1,7 @@
 import 'package:comic_toon_flutter/utils/text_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../../logic/controllers/auth_controllers.dart';
 import '../../../routes.dart';
@@ -9,7 +10,6 @@ import '../../../utils/theme.dart';
 import '../../widgets/auth/auth_button.dart';
 import '../../widgets/auth/auth_text_form_field.dart';
 import '../../widgets/auth/container_under.dart';
-
 
 class LoginScreen extends StatelessWidget {
   final formKey = GlobalKey<FormState>();
@@ -23,26 +23,37 @@ class LoginScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
-
-
         body: Stack(
           children: [
-            Positioned(child: Image.asset("assets/images/Colors.png",fit: BoxFit.fill,),left: 112,),
+            Positioned(
+              left: 28.65.w,
+              child: Image.asset(
+                "assets/images/Colors.png",
+                fit: BoxFit.fill,
+              ),
+            ),
             Column(
               children: [
                 SizedBox(
                   width: double.infinity,
                   height: MediaQuery.of(context).size.height / 1.27,
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
+                    padding:
+                        const EdgeInsets.only(left: 20, right: 20, top: 10),
                     child: Form(
                       key: formKey,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                         const Align(alignment: Alignment.centerLeft,child: TextUtils(text: "LOGIN", color: Colors.black, fontWeight: FontWeight.bold, fontSize: 25)),
-                          const SizedBox(
-                            height: 20,
+                          Align(
+                              alignment: Alignment.centerLeft,
+                              child: TextUtils(
+                                  text: "LOGIN",
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 19.5.sp)),
+                          SizedBox(
+                            height: 2.34.h,
                           ),
                           AuthTextFromField(
                             controller: emailController,
@@ -61,14 +72,15 @@ class LoginScreen extends StatelessWidget {
                             suffixIcon: const Text(""),
                             hintText: 'Email',
                           ),
-                          const SizedBox(
-                            height: 20,
+                          SizedBox(
+                            height: 2.34.h,
                           ),
                           GetBuilder<AuthController>(builder: (_) {
                             return AuthTextFromField(
                               maxLines: 1,
                               controller: passwordController,
-                              obscureText: controller.isVisibilty ? false : true,
+                              obscureText:
+                                  controller.isVisibilty ? false : true,
                               validator: (value) {
                                 if (value.toString().length < 6) {
                                   return 'Password should be longer than 6 characters';
@@ -101,18 +113,18 @@ class LoginScreen extends StatelessWidget {
                             alignment: Alignment.centerRight,
                             child: TextButton(
                                 onPressed: () {
-                                   Get.toNamed(Routes.forgotPasswordScreen);
+                                  Get.toNamed(Routes.forgotPasswordScreen);
                                 },
                                 child: TextUtils(
                                     text: "Forgot password?",
                                     fontWeight: FontWeight.normal,
-                                    fontSize: 12,
+                                    fontSize: 9.5.sp,
                                     color: Get.isDarkMode
                                         ? Colors.white
                                         : Colors.grey)),
                           ),
-                          const SizedBox(
-                            height: 10,
+                          SizedBox(
+                            height: 1.07.h,
                           ),
                           GetBuilder<AuthController>(builder: (_) {
                             return AuthButton(
@@ -125,26 +137,23 @@ class LoginScreen extends StatelessWidget {
 
                                   controller.loginUsingFierbase(
                                       email: email, password: password);
-
                                 }
                                 showDialog(
                                   context: context,
                                   builder: (context) {
-                                    return const Center(child: CircularProgressIndicator());
-
+                                    return const Center(
+                                        child: CircularProgressIndicator());
                                   },
-
                                 );
                               },
                             );
                           }),
-                          const SizedBox(
-                            height: 5,
+                          SizedBox(
+                            height: 0.54.h,
                           ),
                           Align(
                             alignment: Alignment.centerRight,
-                            child:
-                            Container_Under(
+                            child: Container_Under(
                               text: "Don't have an account? ",
                               onPressed: () {
                                 Get.offNamed(Routes.signUpScreen);
@@ -152,17 +161,11 @@ class LoginScreen extends StatelessWidget {
                               typetext: 'Register',
                             ),
                           ),
-
-
                         ],
                       ),
                     ),
                   ),
                 ),
-
-
-
-
               ],
             ),
           ],

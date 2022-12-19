@@ -2,6 +2,7 @@ import 'package:comic_toon_flutter/logic/controllers/comic_controller.dart';
 import 'package:comic_toon_flutter/models/comic_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../../utils/theme.dart';
 import '../../screens/comic/comic_detail.dart';
@@ -26,8 +27,8 @@ final controller =Get.find<ComicController>();
               :
           GridView.builder(
             itemCount: controller.searchList.isEmpty? controller.comicList.length : controller.searchList.length,
-            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                childAspectRatio: 0.93,
+            gridDelegate:  SliverGridDelegateWithMaxCrossAxisExtent(
+                childAspectRatio: 0.109.h,
                 mainAxisSpacing: 10,
                 crossAxisSpacing: 2,
                 maxCrossAxisExtent: 200

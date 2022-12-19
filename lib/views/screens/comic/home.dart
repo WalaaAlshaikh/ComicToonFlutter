@@ -3,6 +3,7 @@ import 'package:comic_toon_flutter/views/widgets/comic/carditem.dart';
 import 'package:comic_toon_flutter/views/widgets/comic/search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sizer/sizer.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -14,24 +15,24 @@ class HomeScreen extends StatelessWidget {
       body: Column(
         children: [
           Padding(
-              padding: const EdgeInsets.only(left: 20.0, right: 20, top: 30),
+              padding:  EdgeInsets.only(top: 1.85.h,left: 5.1.w,right: 5.1.w),
               child: SearchFormText()),
-          const SizedBox(
-            height: 24,
+           SizedBox(
+            height:2.81.h
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 20),
+            padding:  EdgeInsets.only(left: 5.08.w),
             child: Align(
               alignment: Alignment.topLeft,
               child: TextUtils(
                   text: "Top picks for you",
                   fontWeight: FontWeight.bold,
-                  fontSize: 17,
+                  fontSize: 13.sp,
                   color: Get.isDarkMode ? Colors.white : Colors.red.shade700),
             ),
           ),
-          const SizedBox(
-            height: 10,
+           SizedBox(
+            height: 1.17.h,
           ),
           CardItem(),
         ],

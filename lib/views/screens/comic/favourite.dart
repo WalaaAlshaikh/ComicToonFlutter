@@ -60,14 +60,14 @@ class FavScreen extends StatelessWidget {
               child:Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(height: 100,width: 100,
+                  SizedBox(height: 11.7.h,width: 25.44.w,
                     child: Image.asset("assets/images/Mask group.png"),),
-                  const SizedBox(height: 20),
+                   SizedBox(height: 2.34.h),
                   Text("Please,Add your favourite products",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Get.isDarkMode? Colors.white :Colors.black54,
-                        fontSize: 18
+                        fontSize: 15.sp
                     ),),
 
                 ],
@@ -81,14 +81,14 @@ class FavScreen extends StatelessWidget {
           child:Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: 100,width: 100,
+              SizedBox(height: 11.7.h,width: 25.44.w,
                 child: Image.asset("assets/images/Mask group.png"),),
-              const SizedBox(height: 20),
+               SizedBox(height: 2.34.h),
               Text("Mark your favourite comics",
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Get.isDarkMode? Colors.white :Colors.black54,
-                    fontSize: 18
+                    fontSize: 14.sp
                 ),),
 
             ],
@@ -105,10 +105,10 @@ class FavScreen extends StatelessWidget {
     required String review,
   }) {
     return Padding(
-      padding: const EdgeInsets.all(10),
-      child: Container(
+      padding:  EdgeInsets.all(1.17.h),
+      child: SizedBox(
         width: double.infinity,
-        height: 100,
+        height: 11.9.h,
         child: Row(
           children: [
             SizedBox(
@@ -124,8 +124,8 @@ class FavScreen extends StatelessWidget {
                     )),
               ),
             ),
-            const SizedBox(
-              width: 15,
+             SizedBox(
+              width: 3.82.w
             ),
             Expanded(
               flex: 10,
@@ -139,19 +139,19 @@ class FavScreen extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         color: Get.isDarkMode ? Colors.white : Colors.black,
                         fontWeight: FontWeight.bold,
-                        fontSize: 16),
+                        fontSize: 12.5.sp),
                   ),
-                  SizedBox(height: 7,),
+                  SizedBox(height: 0.9.h,),
                   Text(
                     "$issue issues",
                     style: TextStyle(
                         overflow: TextOverflow.ellipsis,
                         color: Get.isDarkMode ? Colors.white : Colors.black,
                         fontWeight: FontWeight.w400,
-                        fontSize: 14),
+                        fontSize: 11.5.sp),
                   ),
-                  const SizedBox(
-                    height: 10,
+                   SizedBox(
+                    height: 1.17.h,
                   ),
               GetBuilder<ComicController>(
                 builder: (_) => Material(
@@ -173,8 +173,8 @@ class FavScreen extends StatelessWidget {
                                     border: const OutlineInputBorder(
                                         borderSide: BorderSide(color: Colors.green, width: 4.0))),
                               ),
-                              const SizedBox(
-                                height: 30.0,
+                               SizedBox(
+                                height:  3.52.h,
                               ),
                               ElevatedButton(
                                 onPressed: () {
@@ -190,7 +190,7 @@ class FavScreen extends StatelessWidget {
                                 style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
                                 child: Text(
                                   'ADD REVIEW',
-                                  style: TextStyle(color: Colors.white, fontSize: 16.0),
+                                  style: TextStyle(color: Colors.white, fontSize: 12.sp),
                                 ),
 
                               )
@@ -228,7 +228,7 @@ class FavScreen extends StatelessWidget {
                 icon: Icon(
                   Icons.delete_forever_outlined,
                   color: Colors.red.shade700,
-                  size: 30,
+                  size: 3.52.h,
                 ))
           ],
         ),

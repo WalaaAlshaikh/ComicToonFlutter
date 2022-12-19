@@ -38,11 +38,11 @@ class AuthTextFromField extends StatelessWidget {
       keyboardType: TextInputType.text,
       validator: (value) => validator(value),
       decoration: InputDecoration(
-          contentPadding: EdgeInsets.all(10),
+          contentPadding: const EdgeInsets.all(10),
           fillColor: Colors.white,
           prefixIcon: prefixIcon,
           prefixText: numCode,
-          prefixStyle: TextStyle(color: labalColor),
+          prefixStyle: const TextStyle(color: labalColor),
           suffixIcon: suffixIcon,
           hintText: hintText,
           hintStyle: TextStyle(
