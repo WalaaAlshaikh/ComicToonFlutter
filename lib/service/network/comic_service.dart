@@ -8,7 +8,8 @@ import '../../utils/my_string.dart';
 
 class ComicServices {
   static Future<List<Comic>> getComic() async {
-    var res = await http.get(Uri.parse("$baseUrl/volumes/?api_key=9c6a8bae62f936621bc6e2b0e4302011673b3122&format=json"));
+    var res = await http.get(Uri.parse(
+        "$baseUrl/volumes/?api_key=9c6a8bae62f936621bc6e2b0e4302011673b3122&format=json"));
     var comics = <Comic>[];
 
     if (res.statusCode == 200) {
@@ -20,15 +21,15 @@ class ComicServices {
         comics.add(Comic.fromJson(comicJson));
       }
       //from the model
-      return  comics;
-
-    }else{
+      return comics;
+    } else {
       return throw Exception("Failed to load data");
     }
   }
 
   static Future<List<Videos>> getVideo() async {
-    var res = await http.get(Uri.parse("$baseUrl/videos/?api_key=9c6a8bae62f936621bc6e2b0e4302011673b3122&format=json"));
+    var res = await http.get(Uri.parse(
+        "$baseUrl/videos/?api_key=9c6a8bae62f936621bc6e2b0e4302011673b3122&format=json"));
     var comics = <Videos>[];
 
     if (res.statusCode == 200) {
@@ -40,9 +41,8 @@ class ComicServices {
         comics.add(Videos.fromJson(videoJson));
       }
       //from the model
-      return  comics;
-
-    }else{
+      return comics;
+    } else {
       return throw Exception("Failed to load data");
     }
   }

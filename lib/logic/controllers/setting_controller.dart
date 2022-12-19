@@ -9,20 +9,19 @@ import 'package:image_picker/image_picker.dart';
 
 import 'auth_controllers.dart';
 
-
 class SettingController extends GetxController {
+  AuthController authController = Get.find();
 
-  AuthController authController=Get.find();
-
-  final ref =FirebaseStorage.instance.ref().child("profileImage").child("${DateTime.now()}"+'.jpg');
-
+  final ref = FirebaseStorage.instance
+      .ref()
+      .child("profileImage")
+      .child("${DateTime.now()}" + '.jpg');
 
   @override
   void onInit() async {
     await getImageFeild();
-   await getNameField();
-   await getDescriptionFeild();
-
+    await getNameField();
+    await getDescriptionFeild();
 
     super.onInit();
   }
@@ -33,8 +32,8 @@ class SettingController extends GetxController {
 
   File? image;
   String? imagePath;
-  RxString imagePath1="".obs;
-  RxString description="".obs;
+  RxString imagePath1 = "".obs;
+  RxString description = "".obs;
   final _picker = ImagePicker();
 
   Future<void> getImage() async {
@@ -63,10 +62,8 @@ class SettingController extends GetxController {
       // await doc.update({"image": imagePath}).whenComplete(() =>
       // imagePath== null );
       // print(imagePath);
-       authController.displayUserPhoto.value=imagePath!;
-
+      authController.displayUserPhoto.value = imagePath!;
     } catch (error) {
-
       Get.snackbar(
         'Error!',
         error.toString(),
@@ -76,24 +73,22 @@ class SettingController extends GetxController {
     }
   }
 
+  getImageFeild() async {
+    if (authController.displayUserPhoto.value != null) {
+      var doc1 = await FirebaseFirestore.instance
+          .collection("users")
+          .doc(authController.displayUserEmail.value)
+          .get();
+      authController.displayUserPhoto.value = doc1['image'];
+      print(
+          "display image in controller ${authController.displayUserPhoto.value}");
 
-   getImageFeild() async {
-     if (authController.displayUserPhoto.value != null) {
-       var doc1 = await FirebaseFirestore.instance
-           .collection("users")
-           .doc(authController.displayUserEmail.value)
-           .get();
-       authController.displayUserPhoto.value = doc1['image'];
-       print("display image in controller ${ authController.displayUserPhoto
-           .value }");
-
-       return authController.displayUserPhoto.value;
-     }
-   }
-
+      return authController.displayUserPhoto.value;
+    }
+  }
 
   Future getNameField() async {
-    if (authController.displayUserName.value!= null){
+    if (authController.displayUserName.value != null) {
       var docData = await FirebaseFirestore.instance
           .collection("users")
           .doc(authController.displayUserEmail.value)
@@ -101,15 +96,11 @@ class SettingController extends GetxController {
       authController.displayUserName.value = docData['displayName'];
       return authController.displayUserName.value;
     }
-
-
-
   }
 
   Future getDescriptionFeild() async {
-
-
-    if(authController.displayDescription.value.isNotEmpty || authController.displayDescription.value==""){
+    if (authController.displayDescription.value.isNotEmpty ||
+        authController.displayDescription.value == "") {
       var doc1 = await FirebaseFirestore.instance
           .collection("users")
           .doc(authController.displayUserEmail.value)
@@ -119,11 +110,8 @@ class SettingController extends GetxController {
       print("display description ${authController.displayDescription.value}");
 
       return authController.displayDescription.value;
-
-    }else{
+    } else {
       return "";
     }
-
-
   }
 }

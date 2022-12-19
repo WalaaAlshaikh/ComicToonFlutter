@@ -4,13 +4,12 @@ import 'package:get/get.dart';
 import '../../service/network/comic_service.dart';
 
 class VideoController extends GetxController {
-
   var videoList = <Videos>[].obs;
   var isLoading = true.obs;
 
   @override
   void onInit() async {
-   getVideos();
+    getVideos();
     super.onInit();
   }
 

@@ -29,9 +29,9 @@ final controller =Get.find<ComicController>();
             itemCount: controller.searchList.isEmpty? controller.comicList.length : controller.searchList.length,
             gridDelegate:  SliverGridDelegateWithMaxCrossAxisExtent(
                 childAspectRatio: 0.109.h,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 2,
-                maxCrossAxisExtent: 200
+                mainAxisSpacing: 1.17.h,
+                crossAxisSpacing: 0.1.h,
+                maxCrossAxisExtent: 25.h
             ),
             itemBuilder: (context,index) {
               if(controller.comicList.isNotEmpty){
@@ -97,7 +97,7 @@ final controller =Get.find<ComicController>();
 
                 Container(
                   width: double.infinity,
-                  height: 145,
+                  height: 17.01.h,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(15),
@@ -108,7 +108,7 @@ final controller =Get.find<ComicController>();
 
                 ),
                 Padding(
-                  padding:  EdgeInsets.only(left: 5 ,right: 5, top: 14),
+                  padding:  EdgeInsets.only(left: 1.27.w ,right: 1.27.w, top: 1.643.h),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

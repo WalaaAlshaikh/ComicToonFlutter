@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:sizer/sizer.dart';
 
-
 import 'firebase_options.dart';
 import 'logic/bindings/auth_binding.dart';
 
@@ -25,23 +24,20 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-     return Sizer(
-        builder: (context, orientation, deviceType) {
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-
-        primarySwatch: Colors.blue,
-      ),
-      initialRoute: FirebaseAuth.instance.currentUser != null ||
-          GetStorage().read<bool>("auth") == true
-          ? AppRoutes.main
-          : AppRoutes.login,
-      getPages:AppRoutes.routes,
-      initialBinding: AuthBinding(),
-    );
-  });
-}}
-
-
+    return Sizer(builder: (context, orientation, deviceType) {
+      return GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        initialRoute: FirebaseAuth.instance.currentUser != null ||
+                GetStorage().read<bool>("auth") == true
+            ? AppRoutes.main
+            : AppRoutes.login,
+        getPages: AppRoutes.routes,
+        initialBinding: AuthBinding(),
+      );
+    });
+  }
+}

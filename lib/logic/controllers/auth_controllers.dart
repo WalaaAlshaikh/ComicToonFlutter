@@ -7,25 +7,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-
 import '../../routes.dart';
 
 class AuthController extends GetxController
     with GetSingleTickerProviderStateMixin {
-
-
-
-
-
-
   bool isVisibilty = false;
   bool isCheckBox = false;
-
   var displayUserName = ''.obs;
   var displayUserPhoto = ''.obs;
   var displayUserEmail = ''.obs;
   var displayDescription = ''.obs;
-
 
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
@@ -36,32 +27,21 @@ class AuthController extends GetxController
 
   User? get userProfile => auth.currentUser;
 
-
-
   @override
   void onInit() {
     displayUserPhoto.value =
         (userProfile != null ? userProfile!.photoURL : "") ?? "";
 
     displayUserEmail.value =
-
         (userProfile != null ? userProfile!.email : "") ?? "";
-
 
     super.onInit();
   }
-
-
-
 
   void Visibilty() {
     isVisibilty = !isVisibilty;
     update();
   }
-
-
-
-
 
   loginUsingFierbase({
     required String email,
@@ -85,23 +65,14 @@ class AuthController extends GetxController
         displayUserPhoto.value = docData['image'];
       });
 
-      // showDialog(
-      //   context: context,
-      //   builder: (context) {
-      //     return CircularProgressIndicator();
-      //   },
-      // );
-
       isSignedIn = true;
       authBox.write("auth", isSignedIn);
+      MainController.currentIndex.value=0;
       update();
       Get.offNamed(Routes.mainScreen);
       //getEmailDoc();
-
     } on FirebaseAuthException catch (error) {
-      String title = error.code
-          .replaceAll(RegExp('-'), ' ')
-          .capitalize!;
+      String title = error.code.replaceAll(RegExp('-'), ' ').capitalize!;
       String message = '';
       if (error.code == 'Wrong E-mail') {
         message = 'Wrong E-mail';
@@ -130,9 +101,7 @@ class AuthController extends GetxController
       update();
       Get.back();
     } on FirebaseAuthException catch (e) {
-      String title = e.code
-          .replaceAll(RegExp('-'), ' ')
-          .capitalize!;
+      String title = e.code.replaceAll(RegExp('-'), ' ').capitalize!;
       String message = '';
       if (e.code == 'user-not-found') {
         message = "No user found for that $email";
@@ -151,8 +120,6 @@ class AuthController extends GetxController
           colorText: Colors.white);
     }
   }
-
-
 
   void signOut() async {
     try {
@@ -191,7 +158,7 @@ class AuthController extends GetxController
       });
 
       DocumentReference doc =
-      FirebaseFirestore.instance.collection("users").doc(email);
+          FirebaseFirestore.instance.collection("users").doc(email);
 
       doc.set({
         "email": email,
@@ -200,14 +167,13 @@ class AuthController extends GetxController
         "image": "",
         "description": "",
       });
+      MainController.currentIndex.value=0;
 
       update();
       Get.offNamed(Routes.mainScreen);
       // getEmailDoc();
     } on FirebaseAuthException catch (e) {
-      String title = e.code
-          .replaceAll(RegExp('-'), ' ')
-          .capitalize!;
+      String title = e.code.replaceAll(RegExp('-'), ' ').capitalize!;
       String message = '';
 
       if (e.code == 'email-already-in-use') {
@@ -234,10 +200,8 @@ class AuthController extends GetxController
     }
   }
 
-
-
-  Future updateFields(TextEditingController value,
-      TextEditingController value1, String imageUrl) async {
+  Future updateFields(TextEditingController value, TextEditingController value1,
+      String imageUrl) async {
     try {
       // value is the email user inputs in a textfield and is validated
       DocumentReference doc = FirebaseFirestore.instance
@@ -257,7 +221,6 @@ class AuthController extends GetxController
       }
       print(displayUserEmail.value);
 
-
       Get.snackbar(
         'Success!',
         "Updated successfully!",
@@ -275,7 +238,4 @@ class AuthController extends GetxController
       );
     }
   }
-
-
-
 }

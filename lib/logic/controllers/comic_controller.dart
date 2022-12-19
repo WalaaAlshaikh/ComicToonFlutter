@@ -52,26 +52,6 @@ class ComicController extends GetxController {
     addSearchToList("");
   }
 
-  void manageFav(int id) async {
-    // navigate the index inside the list where its id equal to the id that i choose
-    var indexWanted = favList.indexWhere((element) {
-      print("-----------------${element.id}");
-      return element.id == id;
-    });
-    print("------------- $id");
-    print(indexWanted);
-    print("-------------");
-
-    if (indexWanted >= 0) {
-      favList.removeAt(indexWanted);
-      await box.remove("isFav");
-    } else {
-      // adding items from product model (parent list) to favourite list (child) based on the id
-      favList.add(favList.firstWhere((element) => element.id == id));
-
-      await box.write("isFav", favList);
-    }
-  }
 
   bool isFav(int productId) {
     //navigate in the parent list is the id of its item same as the id that i will give u or not
@@ -127,8 +107,7 @@ class ComicController extends GetxController {
   }
 
   Future<void> updateData(int id, TextEditingController value) async {
-
-    try{
+    try {
       await fireRef
           .doc(authController.displayUserEmail.value)
           .collection("favourite")
@@ -143,8 +122,7 @@ class ComicController extends GetxController {
       );
 
       update();
-
-    }catch (error) {
+    } catch (error) {
       Get.snackbar(
         'Error!',
         error.toString(),
@@ -153,8 +131,5 @@ class ComicController extends GetxController {
         colorText: Colors.white,
       );
     }
-
   }
-
-
 }
