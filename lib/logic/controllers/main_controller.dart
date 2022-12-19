@@ -7,7 +7,13 @@ import 'package:get/get.dart';
 import '../../views/screens/comic/video_screen.dart';
 
 class MainController  extends GetxController{
-  RxInt currentIndex=0.obs;
+  var currentIndex=0.obs;
+  @override
+  void onInit() {
+     currentIndex.value=0;
+    super.onInit();
+  }
+
 // for tapping in bottom navigation bar , we need to put them also in routes binding
 
   // we need to create binding file for main screen to link the pages together
@@ -16,8 +22,6 @@ class MainController  extends GetxController{
     VideoScreen(),
     FavScreen(),
     ProfileScreen(),
-
-
 
   ].obs;
 

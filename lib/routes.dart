@@ -33,10 +33,7 @@ class AppRoutes {
         name: Routes.forgotPasswordScreen,
         page: () => ForgetPass(),
         binding: AuthBinding()),
-    GetPage(
-        name: Routes.profileScreen,
-        page: () => ProfileScreen(),
-        binding: AuthBinding()),
+
     GetPage(
         name: Routes.editProfileScreen,
         page: () => EditProfileScreen(),
@@ -48,23 +45,18 @@ class AppRoutes {
     GetPage(
         name: Routes.mainScreen,
         page: () => MainScreen(),
-        bindings:[ AuthBinding(),ComicBinding(),MainBinding() ]),
+        bindings:[ AuthBinding(),ComicBinding(),MainBinding()]),
     GetPage(
       name: Routes.comicScreen,
       page: () => HomeScreen(),
       binding: ComicBinding()
     ),
-    // GetPage(
-    //   name: Routes.addProductForm,
-    //   page: () => AddProductFromScreen(),
-    // ),
-    //
 
-    GetPage(
-      name: Routes.comicFavourites,
-      page: () => FavScreen(),
-      binding: ComicBinding(),
-    ),
+    // GetPage(
+    //   name: Routes.comicFavourites,
+    //   page: () => FavScreen(),
+    //   binding: ComicBinding(),
+    // ),
 
   ];
 }

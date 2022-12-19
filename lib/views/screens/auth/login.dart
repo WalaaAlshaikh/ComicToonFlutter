@@ -125,12 +125,15 @@ class LoginScreen extends StatelessWidget {
 
                                   controller.loginUsingFierbase(
                                       email: email, password: password);
+
                                 }
                                 showDialog(
                                   context: context,
                                   builder: (context) {
                                     return const Center(child: CircularProgressIndicator());
+
                                   },
+
                                 );
                               },
                             );

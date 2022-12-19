@@ -71,9 +71,10 @@ class MainScreen extends StatelessWidget {
             },
           ),
           // here in the body we need to add the taps but before we need something called
-          //(index stack) in state managemnet there are some states can't change like in fav if we ant to change it it can't change
+          //(index stack) in state management there are some states can't change like in fav if we ant to change it it can't change
 
-          body: IndexedStack(
+          body:
+          IndexedStack(
             index: controller.currentIndex.value,
             children: controller.taps,
           ),
