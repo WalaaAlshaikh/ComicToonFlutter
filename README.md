@@ -39,6 +39,10 @@ This project represents a Flutter application ComicToon ,that allows user to dis
 * Signup new account using firebase or google account.
 * Logout from account.
 * Reset password.
+* Display comic from API.
+* Transferring the data from API to Firebase Database(Firestore) and then displaying it in screen.
+* Each user has a collection ("favaorite") that differs from one user to another .
+* Playing videos from API based on youtube ID.
 * Update Profile Content (including name, description and image)
 
 
