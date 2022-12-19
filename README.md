@@ -1,4 +1,4 @@
-# ComicToon
+# ComicToon App Doc (API & FireStore application)
 
 
 ![Image 1](https://b.top4top.io/p_2542zh3tv1.png)
